@@ -1,0 +1,64 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Test2.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Test2.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Test2">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<DockPanel Width="">
+		<Grid>
+			<DataGrid Name="DGs" Margin="20" ItemsSource="{Binding Products}"
+			  GridLinesVisibility="All"
+			  BorderThickness="1" BorderBrush="Gray"
+			  IsReadOnly="True"
+			  CanUserSortColumns="False"
+			  VerticalScrollBarVisibility="Auto"
+			  HorizontalScrollBarVisibility="Auto"
+			  VerticalAlignment="Stretch"
+			  HorizontalAlignment="Stretch">
+				
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="ID продукта" Width="2*" MaxWidth="60"
+										Binding="{Binding Id}"  />
+					<DataGridTextColumn Header="Наименование продукта" Width="2*" MaxWidth="300"
+										Binding="{Binding ProductName}"  />
+					<DataGridTextColumn Header="Описание"  Width="2*" MaxWidth="300"
+										Binding="{Binding Description}" />
+					<DataGridTextColumn Header="Цена"  Width="2*" MaxWidth="300"
+										Binding="{Binding Price}"    />
+
+					<DataGridTemplateColumn Header="Кол - во" Width="2*" MaxWidth="230" MinWidth="230">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<ButtonSpinner  Height="20" Width="130" ButtonSpinnerLocation="Right"
+														Spin="ButtonSpinner_Spin">
+									0
+								</ButtonSpinner>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+			<Button IsVisible="False" Name="AdminPanel" Click="admpanel" HorizontalAlignment="Left" Margin="20 265 30 0" Content="Админ панель"></Button>
+			
+			<Button Click="Add_cart" 
+					HorizontalAlignment="Right" 
+					Margin="0 265 20 0" 
+					Content="Добавить выбраные товары в корзину">
+			</Button>
+			<Button Click="Move_cart" 
+					HorizontalAlignment="Right" 
+					Margin="0 330 20 0" 
+					Content="Перейти в корзину"/>
+		</Grid>
+	</DockPanel>
+</Window>

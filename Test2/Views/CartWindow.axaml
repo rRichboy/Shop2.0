@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:vm="using:Test2.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Test2.Views.CartWindow"
+		x:DataType="vm:CartWindowViewModel"
+        Title="CartWindow">
+	<StackPanel>
+		<Button Content="Вернуться к товарам" Click="Back_products">
+		</Button>
+
+		<DockPanel Width="">
+			<Grid>
+				<DataGrid Margin="20" ItemsSource="{Binding CartList}"
+				  GridLinesVisibility="All"
+				  BorderThickness="1" BorderBrush="Gray"
+				  IsReadOnly="True"
+				  CanUserSortColumns="False"
+				  VerticalScrollBarVisibility="Auto"
+				  HorizontalScrollBarVisibility="Auto"
+				  VerticalAlignment="Stretch"
+				  HorizontalAlignment="Stretch">
+
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="ID продукта" Width="2*" MaxWidth="60"
+											Binding="{Binding Id}"  />
+						<DataGridTextColumn Header="Наименование продукта" Width="2*" MaxWidth="300"
+											Binding="{Binding ProductName}"  />
+						<DataGridTextColumn Header="Описание"  Width="2*" MaxWidth="300"
+											Binding="{Binding Description}" />
+						<DataGridTextColumn Header="Цена"  Width="2*" MaxWidth="300"
+											Binding="{Binding Price}"    />
+					</DataGrid.Columns>
+				</DataGrid>
+				</Grid>
+			</DockPanel>
+	</StackPanel>
+</Window>
